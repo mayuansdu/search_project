@@ -51,7 +51,7 @@ def handle_keywords(keywords):
 
 
 def handle_search(words):
-    collections = ['acm', 'elsevier', 'ieee', 'ios', 'isoc', 'springer', 'usenix']
+    collections = ['conference', 'journal']
     results = []
     db = get_database_connect()
     for coll in collections:

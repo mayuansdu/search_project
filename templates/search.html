@@ -6,15 +6,15 @@
     {% for paper in results %}
       <div class="blogs">
         <ul>
-          <h3><a href="/download/?filename={{ paper.title }}&fileurl={{ paper.fileurl }}" target="_blank">{{ paper.title }}</a></h3>
+          <h3>{{ paper.title }}</h3>
             {% for key, value in paper.items %}
-                {% if key != '_id' and key != 'title' and key != 'createTime' and key != 'url' and key != 'biburl' and key != 'fileurl' %}
+                {% if key != '_id' and key != 'title' and key != 'createTime' and key != 'url' %}
                 <p style="font-size: medium"><b>{{ key  }} :</b> {{ value }}</p>
-                {% elif key == 'url' or key == 'biburl'%}
+                {% elif key == 'url' %}
                 <p style="font-size: medium"><b>{{ key  }} :</b><a href="{{ value }}" target="_blank" style="text-decoration:underline;">{{ value }}</a></p>
                 {% endif %}
             {% endfor %}
-          <p class="autor"><span class="dtime f_l">抓取时间:{{ paper.createTime }}</span></p>
+          <p class="autor"><span class="dtime f_l">抓取时间:{{ paper.spider_time }}</span></p>
         </ul>
       </div>
     {% endfor %}
