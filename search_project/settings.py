@@ -25,7 +25,7 @@ SECRET_KEY = 'zmfs)3xj!)lyku)1wy%vh!*2@lif_8=!y39@u*y-1fflp_24y7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost', '192.168.160.128']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', '192.168.160.128', '120.77.86.115']
 
 
 # Application definition
