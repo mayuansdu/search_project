@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block left_content %}
+<div class="topnews">
+      <h2>总共{{ count }}条搜索结果</h2>
+    {% for paper in results %}
+      <div class="blogs">
+        <ul>
+          <h3><a href="/download/?filename={{ paper.title }}&fileurl={{ paper.fileurl }}" target="_blank">{{ paper.title }}</a></h3>
+            {% for key, value in paper.items %}
+                {% if key != '_id' and key != 'title' and key != 'createTime' and key != 'url' and key != 'biburl' and key != 'fileurl' %}
+                <p style="font-size: medium"><b>{{ key  }} :</b> {{ value }}</p>
+                {% elif key == 'url' or key == 'biburl'%}
+                <p style="font-size: medium"><b>{{ key  }} :</b><a href="{{ value }}" target="_blank" style="text-decoration:underline;">{{ value }}</a></p>
+                {% endif %}
+            {% endfor %}
+          <p class="autor"><span class="dtime f_l">抓取时间:{{ paper.createTime }}</span></p>
+        </ul>
+      </div>
+    {% endfor %}
+    <div id="pagination">
+    <ul id="pagination-flickr">
+        {% if results.has_previous %}
+        <li class="previous"><a href="?page={{ results.previous_page_number }}{% if request.GET.wd %}&wd={{ request.GET.wd }}{% endif %}">&laquo;上一页</a></li>
+        {% else %}
+        <li class="previous-off">&laquo;上一页</li>
+        {% endif %}
+         <li class="active">{{ results.number }}/{{ results.paginator.num_pages }}</li>
+        {% if results.has_next %}
+          <li class="next"><a href="?page={{ results.next_page_number }}{% if request.GET.wd %}&wd={{ request.GET.wd }}{% endif %}">下一页 &raquo;</a></li>
+        {% else %}
+          <li class="next-off">下一页 &raquo;</li>
+        {% endif %}
+    </ul>
+   </div>
+</div>
+{% endblock %}

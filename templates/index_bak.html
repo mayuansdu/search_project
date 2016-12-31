@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>{{ SITE_NAME }}</title>
+	<link rel="stylesheet" href="{% static 'css/common.css' %}"/>
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="skinBg" style="background-image: url('{% static 'images/bg.jpg' %}');"></div>
+		<header id="header">
+			<!--
+            <nav class="headNavs fr tr">
+				<a href="admin/"><span>系统管理</span></a>
+				<a><span class="s-icon s-icon-line"></span></a>
+				<a href="javascript:;" class="uname"><span>更多</span><span class="user-arrow"></span></a>
+				<div class="topMenus dn">
+					<span class="arrowTop"></span>
+					<a href="#">个人中心</a>
+					<a href="#">帐号设置</a>
+					<a href="#">搜索设置</a>
+					<a href="#">意见反馈</a>
+					<a href="#">安全退出</a>
+				</div>
+			</nav>
+			-->
+		</header>
+		<div class="content tc">
+			<p class="logo"><img width="270" height="129" src="../static/images/logo_white.png" alt="logo" /></p>
+			<div class="searchBox">
+				<form action="/search/" method="get">
+					{% csrf_token %}
+					<input type="text" class="searchIpt f14" name="wd" maxlength="100" autocomplete="off"/>
+					<input type="submit" class="btn cp" value="搜索" />
+				</form>
+			</div>
+		</div>
+		<footer align="bottom" id="footer" class="tc">{{ COPYRIGHT }}</footer>
+	</div>
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/jquery.autocomplete.min.js' %}"></script>
+	<script>
+		$('.uname,.topMenus').hover(function(){
+			$('.topMenus').stop(true,true).fadeIn(200);
+		},function(){
+			$('.topMenus').stop(true,true).delay(500).fadeOut(200);
+		});
+		
+		//搜索框自动补全; 
+		$('.searchIpt').AutoComplete({
+            'data': ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'],
+            'itemHeight': 24,
+            'width': 529
+        }).AutoComplete('show');
+            
+		$('.ctnerTab a').click(function(){
+			if(!$(this).hasClass('on')){
+				$('.ctnerTab a').removeClass('on').eq($(this).index()).addClass('on');
+				$('.rtNavs').stop(true,true).hide(200).eq($(this).index()).show(300);
+			}
+		});
+		
+		$('.menusWrapper a').click(function(){
+			if(!$(this).hasClass('active')){
+				$('.menusWrapper a').removeClass('active').eq($(this).index()).addClass('active');
+				$('.cbox').stop(true,true).animate({top:318},100).hide().eq($(this).index()).animate({top:0},400).show();
+			}
+		});
+		
+		$('.smallPics a').click(function(){
+			if(!$(this).hasClass('active')){
+				$('.smallPics a').removeClass('active').eq($(this).index()).addClass('active');
+				$('.picLink').stop(true,true).removeClass('active').eq($(this).index()).addClass('active');
+			}
+		});
+				
+		$('.titleT').hover(function(){
+			if(!$(this).hasClass('on')){
+				$('.titleT').removeClass('on').eq($(this).index()).addClass('on');
+				$('.topicB').stop(true,true).hide().eq($(this).index()).show();
+			}
+		});
+	</script>
+</body>
+</html>

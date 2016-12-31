@@ -1,0 +1,12 @@
+{% block search_input %}
+    <div style="width:30%; margin: 20px 38% 30px auto">
+        <a href="/"><img width="290px" height="150px" src="../static/images/logo_white.png" alt="logo"/></a>
+    </div>
+    <div style="margin: 30px auto 0 auto; text-align: center;">
+        <form action="/search/" method="get">
+            {% csrf_token %}
+            <input type="text" class="searchIpt f14" name="wd" maxlength="100" style="border: lightslategray 1px solid;" autocomplete="off"/>
+            <input type="submit" class="btn cp" value="搜索" style="color: #fff;background: #3385ff;"/>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{ SITE_NAME }}</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href={% static 'css/base.css' %} rel="stylesheet">
+<link href={% static 'css/index.css' %} rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/common.css' %}"/>
+<script type="text/javascript" src={% static 'js/jquery.min.js' %}></script>
+<script type="text/javascript" src={% static 'js/sliders.js' %}></script>
+<!--[if lt IE 9]>
+<script src={% static 'js/modernizr.js' %}></script>
+<![endif]-->
+</head>
+<body>
+    <div class="content tc">
+        {% include 'search_input.html' %}
+    </div>
+<article>
+  <div class="l_box f_l">
+    {% block left_content %}{% endblock %}
+  </div>
+</article>
+{% block footer_content %}
+<footer>
+    {% include 'footer.html' %}
+</footer>
+{% endblock %}
+</body>
+</html>
