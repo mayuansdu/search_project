@@ -8,10 +8,15 @@
         <ul>
           <h3>{{ paper.title }}</h3>
             {% for key, value in paper.items %}
-                {% if key != '_id' and key != 'title' and key != 'createTime' and key != 'url' %}
+                {% if key != '_id' and key != 'title' and key != 'createTime' and key != 'url' and key != 'author' %}
                 <p style="font-size: medium"><b>{{ key  }} :</b> {{ value }}</p>
                 {% elif key == 'url' %}
                 <p style="font-size: medium"><b>{{ key  }} :</b><a href="{{ value }}" target="_blank" style="text-decoration:underline;">{{ value }}</a></p>
+                {% elif key == 'author' %}
+                    <p style="font-size: medium"><b>{{ key  }} :</b></p>
+                    {% for k, v in value.items %}
+                        <p style="font-size: medium">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{ k }} : </b>{{ v.affiliation }}</p>
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
           <p class="autor"><span class="dtime f_l">抓取时间:{{ paper.spider_time }}</span></p>
