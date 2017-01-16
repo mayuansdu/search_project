@@ -21,7 +21,7 @@ def global_setting(request):
 def get_database_connect():
     conn = pymongo.MongoClient(host='127.0.0.1', port=27017)
     db = conn.paper_spider
-    db.authenticate('ps', 'ps*sp!')
+    db.authenticate('se', 'se*es!')
     return db
 
 
