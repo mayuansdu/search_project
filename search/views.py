@@ -19,7 +19,7 @@ def global_setting(request):
 
 # 连接到mongodb 默认使用数据库spider
 def get_database_connect():
-    conn = pymongo.MongoClient(host='127.0.0.1', port=27017)
+    conn = pymongo.MongoClient(host='127.0.0.1', port=27617)
     db = conn.paper_spider
     db.authenticate('se', 'se*es!')
     return db
